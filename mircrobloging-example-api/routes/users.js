@@ -15,18 +15,18 @@ router.get('/', function(req, res, next) {
 
   // res.json({
   //   "users": [
-  //     {"id": 123,
-  //     "name": "Eladio Guardiola",
-  //     "phones": {
-  //       "home": "800-123-4567",
-  //       "mobile": "877-123-1234"
-  //     },
-  //     "email": [
-  //       "jd@example.com",
-  //       "jd@example.org"],
-  //     "dateOfBirth": "1980-01-02T00:00:00.000Z",
-  //     "registered": true
-  //     },
+      // {"id": 123,
+      // "name": "Eladio Guardiola",
+      // "phones": {
+      //   "home": "800-123-4567",
+      //   "mobile": "877-123-1234"
+      // },
+      // "email": [
+      //   "jd@example.com",
+      //   "jd@example.org"],
+      // "dateOfBirth": "1980-01-02T00:00:00.000Z",
+      // "registered": true
+      // },
   //     {"id": 456,
   //     "name": "Nemesio Tornero",
   //     "phones": {
@@ -74,7 +74,7 @@ router.get('/:id', function(req, res, next) {
 
 // POST de un nuevo usuario
 
-router.post('/', function(req, res) {
+router.post('/', function(req, res, next) {
   User.create(req.body, function(err, userinfo) {
     if (err) res.status(500).send(err);
     else res.sendStatus(200);
@@ -87,7 +87,7 @@ router.post('/', function(req, res) {
 
 // PUT de un usuario existente identificado por su Id
 
-router.put('/:id', function(req, res) {
+router.put('/:id', function(req, res, next) {
   User.findByIdAndUpdate(req.params.id, req.body, function(err, userinfo) {
     if (err) res.status(500).send(err);
     else res.sendStatus(200);
@@ -100,12 +100,11 @@ router.put('/:id', function(req, res) {
 
 // DELETE de un usuario existente identificado por su Id
 
-router.delete('/:id', function(req, res) {
+router.delete('/:id', function(req, res, next) {
   User.findByIdAndDelete(req.params.id, function (err, userinfo) {
     if (err) res.status(500).send(err);
     else res.sendStatus(200);
   });
-
   // ToDo (hacer algo con el usuario)
   // res.status(200).send('Usario con id ' + req.params.id + ' ha sido borrado satisfactoriamente')
 });
